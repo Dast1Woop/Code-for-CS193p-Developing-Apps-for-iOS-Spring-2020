@@ -11,7 +11,10 @@ import SwiftUI
 /// swiftUI是函数式编程，不是面向对象编程
 /// 紫色：系统关键字，蓝色：系统类型，绿色：自定义变量名
 struct ContentView: View {
-    var body: some View {//some View，任意视图。：代表表现的像xx
+    
+    //some View，任意视图。：代表表现的像xx
+    //😓，注释不能写在代码后面的同一行，否则预览会报错
+    var body: some View {
         
         //content:参数是代码块
         return
@@ -19,12 +22,14 @@ struct ContentView: View {
                 ForEach(0..<4, content: {index in
                     
                     //todo:why cannot print
-//                    print(index)
+                    //                    print(index)
                     Cardview()
+//                        .padding()
                 })
             }
-            .foregroundColor(Color.orange)
             .padding()
+            .foregroundColor(Color.orange)
+            
         //在外面写的方法会作用于整个代码块
     }
 }
@@ -71,6 +76,10 @@ struct Cardview: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+                .preferredColorScheme(.dark)
+            ContentView()
+        }
     }
 }
