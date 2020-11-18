@@ -15,29 +15,37 @@ struct ContentView: View {
     //some View，任意视图。：代表表现的像xx
     //😓，注释不能写在代码后面的同一行，否则预览会报错
     var body: some View {
-        
-        //content:参数是代码块
         return
-            HStack{
-                ForEach(0..<4, content: {index in
-                    
-                    //todo:why cannot print
-                    //                    print(index)
-                    Cardview()
-//                        .padding()
-                })
+            
+            //当函数没有参数时，()也可以省略
+            VStack {
+                
+                //尾调闭包写法更简洁
+                ForEach(0..<3) {index in
+                    HStack {
+                        
+                        //content:参数是闭包。
+                        ForEach(0..<3, content: {index in
+                            
+                            //todo:why cannot print
+                            //                    print(index)
+                            Cardview()
+                            //                        .padding()
+                        })
+                    }
+                }
             }
             .padding()
             .foregroundColor(Color.orange)
-            
+        
         //在外面写的方法会作用于整个代码块
     }
 }
 
 struct Cardview: View {
-    var isFaceUp = false
-    var body: some View{
-        ZStack{
+    var isFaceUp = true
+    var body: some View {
+        ZStack {
             if(isFaceUp){
                 RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
                 RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
@@ -47,7 +55,6 @@ struct Cardview: View {
             }else{
                 RoundedRectangle(cornerRadius: 10).fill(Color.orange)
             }
-            
         }
     }
 }
