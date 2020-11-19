@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C2672AF0256665C700BFBD6F /* FlipCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2672AEF256665C700BFBD6F /* FlipCardModel.swift */; };
+		C2672AF3256665E000BFBD6F /* EmojiFlipCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2672AF2256665E000BFBD6F /* EmojiFlipCardVM.swift */; };
 		C2999EF92563A94F003DC445 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2999EF82563A94F003DC445 /* AppDelegate.swift */; };
 		C2999EFB2563A94F003DC445 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2999EFA2563A94F003DC445 /* SceneDelegate.swift */; };
 		C2999EFD2563A94F003DC445 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2999EFC2563A94F003DC445 /* ContentView.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C2672AEF256665C700BFBD6F /* FlipCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipCardModel.swift; sourceTree = "<group>"; };
+		C2672AF2256665E000BFBD6F /* EmojiFlipCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiFlipCardVM.swift; sourceTree = "<group>"; };
 		C2999EF52563A94F003DC445 /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2999EF82563A94F003DC445 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2999EFA2563A94F003DC445 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +62,8 @@
 			children = (
 				C2999EF82563A94F003DC445 /* AppDelegate.swift */,
 				C2999EFA2563A94F003DC445 /* SceneDelegate.swift */,
+				C2672AEF256665C700BFBD6F /* FlipCardModel.swift */,
+				C2672AF2256665E000BFBD6F /* EmojiFlipCardVM.swift */,
 				C2999EFC2563A94F003DC445 /* ContentView.swift */,
 				C2999EFE2563A950003DC445 /* Assets.xcassets */,
 				C2999F032563A950003DC445 /* LaunchScreen.storyboard */,
@@ -146,8 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2672AF0256665C700BFBD6F /* FlipCardModel.swift in Sources */,
 				C2999EF92563A94F003DC445 /* AppDelegate.swift in Sources */,
 				C2999EFB2563A94F003DC445 /* SceneDelegate.swift in Sources */,
+				C2672AF3256665E000BFBD6F /* EmojiFlipCardVM.swift in Sources */,
 				C2999EFD2563A94F003DC445 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

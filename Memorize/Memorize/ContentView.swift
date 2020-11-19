@@ -12,6 +12,8 @@ import SwiftUI
 /// 紫色：系统关键字，蓝色：系统类型，绿色：自定义变量名
 struct ContentView: View {
     
+    var viewModel: EmojiFlipCardVM
+    
     //some View，任意视图。：代表表现的像xx
     //😓，注释不能写在代码后面的同一行，否则预览会报错
     var body: some View {
@@ -25,11 +27,11 @@ struct ContentView: View {
                     HStack {
                         
                         //content:参数是闭包。
-                        ForEach(0..<3, content: {index in
+                        ForEach(viewModel.cards, content: {card in
                             
                             //todo:why cannot print
                             //                    print(index)
-                            Cardview()
+                            Cardview(card: card)
                             //                        .padding()
                         })
                     }
@@ -43,17 +45,18 @@ struct ContentView: View {
 }
 
 struct Cardview: View {
-    var isFaceUp = true
+    var card: FlipCardModel<String>.Card
     var body: some View {
+    
         ZStack {
-            if(isFaceUp){
+            if(card.isFaceUp){
                 RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
                 RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
                 
                 //cmd+ctrl+space,调出emoji
-                Text("👻").font(Font.largeTitle)
+                Text(card.content).font(Font.largeTitle)
             }else{
-                RoundedRectangle(cornerRadius: 10).fill(Color.orange)
+                RoundedRectangle(cornerRadius:10).fill(Color.orange)
             }
         }
     }
@@ -84,9 +87,9 @@ struct Cardview: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView()
+            ContentView(viewModel: EmojiFlipCardVM())
                 .preferredColorScheme(.dark)
-            ContentView()
+            ContentView(viewModel: EmojiFlipCardVM())
         }
     }
 }
