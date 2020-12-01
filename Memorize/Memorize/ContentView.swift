@@ -8,11 +8,12 @@
 
 import SwiftUI
 
+
+
 /// swiftUI是函数式编程，不是面向对象编程
 /// 紫色：系统关键字，蓝色：系统类型，绿色：自定义变量名
 struct ContentView: View {
-    
-    var viewModel: EmojiFlipCardVM
+    var viewModel: MemoryGameVM
     
     //some View，任意视图。：代表表现的像xx
     //😓，注释不能写在代码后面的同一行，否则预览会报错
@@ -31,7 +32,9 @@ struct ContentView: View {
                             
                             //todo:why cannot print
                             //                    print(index)
-                            Cardview(card: card)
+                            Cardview(card: card).onTapGesture(perform: {
+                                viewModel.chooseCard(card: card)
+                            })
                             //                        .padding()
                         })
                     }
@@ -45,7 +48,7 @@ struct ContentView: View {
 }
 
 struct Cardview: View {
-    var card: FlipCardModel<String>.Card
+    var card: MemoryGameM<String>.Card
     var body: some View {
     
         ZStack {
@@ -87,9 +90,10 @@ struct Cardview: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView(viewModel: EmojiFlipCardVM())
+            ContentView(viewModel: MemoryGameVM())
                 .preferredColorScheme(.dark)
-            ContentView(viewModel: EmojiFlipCardVM())
+            ContentView(viewModel: MemoryGameVM())
+            ContentView(viewModel: MemoryGameVM())
         }
     }
 }

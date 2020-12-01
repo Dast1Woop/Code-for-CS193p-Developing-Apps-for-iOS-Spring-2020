@@ -8,16 +8,14 @@
 
 import Foundation
 
-struct FlipCardModel<CardContent> {
-    var cards:Array<Card> = []
+//MVVM，可以在类的结尾分别加M、V、VM来区分
+struct MemoryGameM<CardContent> {
     
-    //    func numberOf(cardPairs:Int, content:CardContent) -> FlipCardModel<CardContent>
-
-    //?函数如何单独声明，然后作为形参传入？
-//    var aa: (Int) -> CardContent
+    //结构体的属性声明时不必初始化，在自定义init方法里初始化更合理
+    var cards:Array<Card>
     
     init(cardPairs:Int, content:((Int) -> CardContent)) {
-      
+        cards = Array<Card>()
         for i in 0..<cardPairs {
             let content = content(i)
             
@@ -26,6 +24,9 @@ struct FlipCardModel<CardContent> {
             let card1 = Card(content: content, id: 2*i + 1)
             cards.append(card1)
         }
+        
+        //洗牌
+        cards.shuffle()
     }
     
     struct Card: Identifiable {
@@ -33,8 +34,12 @@ struct FlipCardModel<CardContent> {
         var isChoosed = false
         var content:CardContent
         
-        //Int?
+        //id为Int类型，赋值时，要是唯一的。使得可以正常洗牌。
         var id: Int
+        
+        func choosed()  {
+            print("choosed:\(self)")
+        }
     }
     
 }
