@@ -10,7 +10,7 @@ import Foundation
 
 
 //函数也可以单独声明在 “类外面”，然后作为形参传入
-let gEmojiArr = ["0🐭0", "0🐄0", "0🐯0"]
+let gEmojiArr = ["🏆", "🌴","💧", "🔥", "🌏",]
 func creatCardContent(index: Int)->String{
     return gEmojiArr[index]
 }
@@ -33,8 +33,9 @@ class MemoryGameVM{
 //        let model = FlipCardModel<String>(cardPairs: gEmojiArr.count,content: creatCardContent)
         
         //2、尾调闭包法,更符合 高内聚 思想
-        let arr = ["🐭", "🐄", "🐯"]
-        let model = MemoryGameM<String>(cardPairs: arr.count){ (index) -> String in
+        let arr = ["🏆", "🌴","💧", "🔥", "🌏",]
+        let randomNum = arc4random_uniform(5 - 2 + 1) + 2
+        let model = MemoryGameM<String>(cardPairs: Int(randomNum)){ (index) -> String in
             arr[index]
         }
         

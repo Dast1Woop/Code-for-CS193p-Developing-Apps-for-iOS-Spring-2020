@@ -28,12 +28,12 @@ struct ContentView: View {
                     HStack {
                         
                         //content:参数是闭包。
-                        ForEach(viewModel.cards, content: {card in
+                        ForEach(self.viewModel.cards, content: {card in
                             
                             //todo:why cannot print
                             //                    print(index)
                             Cardview(card: card).onTapGesture(perform: {
-                                viewModel.chooseCard(card: card)
+                                self.viewModel.chooseCard(card: card)
                             })
                             //                        .padding()
                         })
@@ -57,11 +57,11 @@ struct Cardview: View {
                 RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
                 
                 //cmd+ctrl+space,调出emoji
-                Text(card.content).font(Font.largeTitle)
+                Text(card.content).font(card.isFontUseLargeTitle ? Font.largeTitle : Font.body)
             }else{
                 RoundedRectangle(cornerRadius:10).fill(Color.orange)
             }
-        }
+        }.aspectRatio(2/3, contentMode: .fit)
     }
 }
 
@@ -93,7 +93,7 @@ struct ContentView_Previews: PreviewProvider {
             ContentView(viewModel: MemoryGameVM())
                 .preferredColorScheme(.dark)
             ContentView(viewModel: MemoryGameVM())
-            ContentView(viewModel: MemoryGameVM())
+                .preferredColorScheme(.light)
         }
     }
 }

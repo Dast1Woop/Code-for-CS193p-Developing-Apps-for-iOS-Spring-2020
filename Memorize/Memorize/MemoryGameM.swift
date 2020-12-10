@@ -16,12 +16,22 @@ struct MemoryGameM<CardContent> {
     
     init(cardPairs:Int, content:((Int) -> CardContent)) {
         cards = Array<Card>()
+        
+        //4 test
+//        var cardPairs = cardPairs
+//        cardPairs = 5
+        
         for i in 0..<cardPairs {
             let content = content(i)
             
-            let card0 = Card(content: content, id: 2*i)
+//When you call a memberwise initializer, you can omit values for any properties that have default values.
+//            Card(isFaceUp: true, content: content, id: 0)
+            var card0 = Card(content: content, id: 2*i)
+            card0.isFontUseLargeTitle = 5 == cardPairs ? false : true
             cards.append(card0)
-            let card1 = Card(content: content, id: 2*i + 1)
+            
+            var card1 = Card(content: content, id: 2*i + 1)
+            card1.isFontUseLargeTitle = 5 == cardPairs ? false : true
             cards.append(card1)
         }
         
@@ -32,6 +42,7 @@ struct MemoryGameM<CardContent> {
     struct Card: Identifiable {
         var isFaceUp = true
         var isChoosed = false
+        var isFontUseLargeTitle = true
         var content:CardContent
         
         //id为Int类型，赋值时，要是唯一的。使得可以正常洗牌。
