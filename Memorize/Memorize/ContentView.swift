@@ -54,16 +54,24 @@ struct Cardview: View {
                     
     //                不能在 viewbuilder 中声明再使用变量，必须放在 viewbuilder 外面，最好是 body 闭包外面
     //                var x = 1
-                    RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
-                    RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
+                    RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
+                    RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: lineWidth)
                     
                     //cmd+ctrl+space,调出emoji
-                    Text(card.content).font(Font.system(size: 0.75 * min(geometry.size.width, geometry.size.height)))
+                    Text(card.content).font(cardContentFont(size: geometry.size))
                 }else{
-                    RoundedRectangle(cornerRadius:10).fill(Color.orange)
+                    RoundedRectangle(cornerRadius:cornerRadius).fill(Color.orange)
                 }
             }
         }
+    }
+    
+    //MARK: constants
+    let cornerRadius: CGFloat = 10
+    let lineWidth: CGFloat = 3
+    
+    func cardContentFont(size:CGSize)->Font{
+        return Font.system(size: 0.75 * min(size.width, size.height))
     }
 }
 
