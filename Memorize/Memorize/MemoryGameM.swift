@@ -14,7 +14,7 @@ struct MemoryGameM<CardContent> {
     //结构体的属性声明时不必初始化，在自定义init方法里初始化更合理
     var cards:Array<Card>
     
-    init(cardPairs:Int, content:((Int) -> CardContent)) {
+    init(cardPairs:Int, contentFactory:((Int) -> CardContent)) {
         cards = Array<Card>()
         
         //4 test
@@ -22,7 +22,7 @@ struct MemoryGameM<CardContent> {
 //        cardPairs = 5
         
         for i in 0..<cardPairs {
-            let content = content(i)
+            let content = contentFactory(i)
             
 //When you call a memberwise initializer, you can omit values for any properties that have default values.
 //            Card(isFaceUp: true, content: content, id: 0)

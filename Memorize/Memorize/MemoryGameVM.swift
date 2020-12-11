@@ -16,10 +16,10 @@ func creatCardContent(index: Int)->String{
 }
 
 //vm,可能会被共享，所以需要声明为类，因其创建的对象是指针类型。而结构体是值类型（copy-on-write特性）
-class MemoryGameVM{
+class MemoryGameVM: ObservableObject{
     
     //持有model、私有化，通过类方法初始化，不能通过对象方法，因为swift的对象的属性必须先初始化，才能创建对象
-    private var model:MemoryGameM<String> = MemoryGameVM.createMemoryGame()
+    @Published private var model:MemoryGameM<String> = MemoryGameVM.createMemoryGame()
     
     //直接写Card会报错，需要写结构体路径
     var cards: Array<MemoryGameM<String>.Card>{
@@ -47,6 +47,31 @@ class MemoryGameVM{
     //操作model
     func chooseCard(card: MemoryGameM<String>.Card)  {
         card.choosed()
+        
+        //反转 cards 中对应 card 的 isFaceUp 属性
+        let index = indexOf(card)
+        if let index = index{
+            model.cards[index].isFaceUp = !cards[index].isFaceUp
+        }
+    }
+    
+    func indexOf(_ card: MemoryGameM<String>.Card)-> Int?{
+        
+        //Tuple pattern cannot match values of non-tuple type 'MemoryGameM<String>.Card'
+//        for (index,cardM) in model.cards {
+//            if cardM.id == card.id {
+//                return index
+//            }
+//        }
+        
+        for i in 0..<cards.count{
+            let c = cards[i]
+            if c.id == card.id{
+                return i
+            }
+        }
+        
+        return nil
     }
 }
 
