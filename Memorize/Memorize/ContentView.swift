@@ -48,19 +48,20 @@ struct ContentView: View {
 struct Cardview: View {
     var card: MemoryGameM<String>.Card
     var body: some View {
-    
-        ZStack {
-            if(card.isFaceUp){
-                
-//                不能在 viewbuilder 中声明再使用变量，必须放在 viewbuilder 外面，最好是 body 闭包外面
-//                var x = 1
-                RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
-                RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
-                
-                //cmd+ctrl+space,调出emoji
-                Text(card.content).font(card.isFontUseLargeTitle ? Font.largeTitle : Font.body)
-            }else{
-                RoundedRectangle(cornerRadius:10).fill(Color.orange)
+        GeometryReader{ geometry in
+            ZStack {
+                if(card.isFaceUp){
+                    
+    //                不能在 viewbuilder 中声明再使用变量，必须放在 viewbuilder 外面，最好是 body 闭包外面
+    //                var x = 1
+                    RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+                    RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
+                    
+                    //cmd+ctrl+space,调出emoji
+                    Text(card.content).font(Font.system(size: 0.75 * min(geometry.size.width, geometry.size.height)))
+                }else{
+                    RoundedRectangle(cornerRadius:10).fill(Color.orange)
+                }
             }
         }
     }
