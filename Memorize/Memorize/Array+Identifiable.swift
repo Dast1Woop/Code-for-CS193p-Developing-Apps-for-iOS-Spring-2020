@@ -12,6 +12,8 @@ import Foundation
 //extension Array<Element> where Element: Identifiable{
 
 extension Array where Element: Identifiable{
+    
+    //Element:swift 自定义的占位符，不是所有的 Element 都能被 T 代替，比如此处
     func firstIndex(matching element:Element) -> Int? {
         for i in 0..<self.count {
             let lEle = self[i]
