@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C2672AF0256665C700BFBD6F /* MemoryGameM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2672AEF256665C700BFBD6F /* MemoryGameM.swift */; };
 		C2672AF3256665E000BFBD6F /* MemoryGameVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2672AF2256665E000BFBD6F /* MemoryGameVM.swift */; };
+		C2724D5F258767FE002406CD /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2724D5E258767FE002406CD /* GridLayout.swift */; };
+		C2724D782589D919002406CD /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2724D772589D919002406CD /* GridView.swift */; };
 		C2999EF92563A94F003DC445 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2999EF82563A94F003DC445 /* AppDelegate.swift */; };
 		C2999EFB2563A94F003DC445 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2999EFA2563A94F003DC445 /* SceneDelegate.swift */; };
 		C2999EFD2563A94F003DC445 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2999EFC2563A94F003DC445 /* ContentView.swift */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		C2672AEF256665C700BFBD6F /* MemoryGameM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameM.swift; sourceTree = "<group>"; };
 		C2672AF2256665E000BFBD6F /* MemoryGameVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameVM.swift; sourceTree = "<group>"; };
+		C2724D5E258767FE002406CD /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
+		C2724D772589D919002406CD /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		C2999EF52563A94F003DC445 /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2999EF82563A94F003DC445 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2999EFA2563A94F003DC445 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 				C2672AEF256665C700BFBD6F /* MemoryGameM.swift */,
 				C2672AF2256665E000BFBD6F /* MemoryGameVM.swift */,
 				C2999EFC2563A94F003DC445 /* ContentView.swift */,
+				C2724D772589D919002406CD /* GridView.swift */,
+				C2724D5E258767FE002406CD /* GridLayout.swift */,
 				C2999EFE2563A950003DC445 /* Assets.xcassets */,
 				C2999F032563A950003DC445 /* LaunchScreen.storyboard */,
 				C2999F062563A950003DC445 /* Info.plist */,
@@ -155,6 +161,8 @@
 				C2672AF0256665C700BFBD6F /* MemoryGameM.swift in Sources */,
 				C2999EF92563A94F003DC445 /* AppDelegate.swift in Sources */,
 				C2999EFB2563A94F003DC445 /* SceneDelegate.swift in Sources */,
+				C2724D782589D919002406CD /* GridView.swift in Sources */,
+				C2724D5F258767FE002406CD /* GridLayout.swift in Sources */,
 				C2672AF3256665E000BFBD6F /* MemoryGameVM.swift in Sources */,
 				C2999EFD2563A94F003DC445 /* ContentView.swift in Sources */,
 			);

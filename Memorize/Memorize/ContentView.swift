@@ -18,28 +18,49 @@ struct ContentView: View {
     //some View，任意视图。：代表表现的像xx
     //😓，注释不能写在代码后面的同一行，否则预览会报错
     var body: some View {
-        return
             
             //当函数没有参数时，()也可以省略
             
             //尾调闭包写法更简洁
-            HStack {
-                
-                //content:参数是闭包。
-                ForEach(self.viewModel.cards, content: {card in
-                    
-                    //just cannot print or 声明var in viewBuilder！
-                    //                    print(index)
-                    Cardview(card: card)
-                        .aspectRatio(2/3, contentMode: .fit)
-                        .onTapGesture(perform: {
+//            HStack {
+//
+//                //content:参数是闭包
+//                ForEach(self.viewModel.cards){card in
+//
+//                    //just cannot print or 声明var in viewBuilder！
+//                    //                    print(index)
+//                    Cardview(card: card)
+//                        .aspectRatio(2/3, contentMode: .fit)
+//                        .onTapGesture(perform: {
+//                        self.viewModel.chooseCard(card: card)
+//                    })
+//                }
+//            }
+//            .padding()
+//            .foregroundColor(Color.orange)
+        
+        //自定义布局
+            //GridView未支持泛型时：
+            //Could not cast value of type 'SwiftUI.ModifiedContent<Memorize.Cardview, SwiftUI.AddGestureModifier<SwiftUI._EndedGesture<SwiftUI.TapGesture>>>' (0x7fe09b81e640) to 'Memorize.Cardview' (0x10565d910).
+//            GridView(self.viewModel.cards){ card in
+//                Cardview(card: card)
+//                    .aspectRatio(2/3, contentMode: .fit)
+//                    .onTapGesture(perform: {
+//                        self.viewModel.chooseCard(card: card)
+//                    }) as! Casrdview
+//            }
+//            .padding()
+        
+            //正解：修正GridView支持泛型，修正初始化方法中func返回视图为泛型。此后，可以不写 as! Cardview 了，运行也不会报错了。
+            GridView(self.viewModel.cards){ card in
+                Cardview(card: card)
+                    .padding(5)
+//                    .aspectRatio(2/3, contentMode: .fit)
+                    .onTapGesture(perform: {
                         self.viewModel.chooseCard(card: card)
                     })
-                    //                        .padding()
-                })
             }
-            .padding()
-            .foregroundColor(Color.orange)
+           
         
         //在外面写的方法会作用于整个代码块
     }
