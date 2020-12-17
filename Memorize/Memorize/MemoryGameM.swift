@@ -12,10 +12,10 @@ import Foundation
 struct MemoryGameM<CardContent> {
     
     //结构体的属性声明时不必初始化，在自定义init方法里初始化更合理
-    var cards:Array<Card>
+    var cards:[Card]
     
     init(cardPairs:Int, contentFactory:((Int) -> CardContent)) {
-        cards = Array<Card>()
+        cards = [Card]()
         
         //4 test
 //        var cardPairs = cardPairs
