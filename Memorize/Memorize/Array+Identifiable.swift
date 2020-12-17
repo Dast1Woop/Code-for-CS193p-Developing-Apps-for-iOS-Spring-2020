@@ -8,7 +8,7 @@
 
 import Foundation
 
-//Cannot find type 'Element' in scope
+//Cannot find type 'Element' in scope！！！
 //extension Array<Element> where Element: Identifiable{
 
 extension Array where Element: Identifiable{

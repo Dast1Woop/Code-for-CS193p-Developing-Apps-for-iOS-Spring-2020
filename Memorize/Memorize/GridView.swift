@@ -12,27 +12,40 @@ import SwiftUI
 struct GridView<Item, ItemView>: View where Item:Identifiable, ItemView: View {
     
     var cards:[Item]
-    var content:(Item)->ItemView
+    var makeViewFunc:(Item)->ItemView
     
     var body: some View {
         GeometryReader{geometry in
             let layout = GridLayout(itemCount: cards.count, in: geometry.size)
             
             //Closure containing control flow statement cannot be used with function builder 'ViewBuilder'
-//            for i in 0..<cards.count{
-//                let card = cards[i]
-//                content(card)
-//                    .position(layout.location(ofItemAt: i))
-//            }
+            //在视图构造器中，不能用for in等控制流语句，只能用ForEach结构体
+            //            for i in 0..<cards.count{
+            //                let card = cards[i]
+            //                content(card)
+            //                    .position(layout.location(ofItemAt: i))
+            //            }
             
-            ForEach(cards){
-                card in
-                let index = cards.firstIndex(matching: card)
-                if let index = index{
-                    content(card)
-                        .position(layout.location(ofItemAt: index))
-                        .frame(width: layout.itemSize.width, height: layout.itemSize.height)
-                }
+            bodyFor(layout)
+        }
+    }
+    
+    func bodyFor(_ layout: GridLayout)-> some View{
+        ForEach(cards){
+            card in
+            bodyFor(item: card, in: layout)
+        }
+    }
+    
+    func bodyFor(item: Item,in layout: GridLayout)-> some View{
+        
+        //Group：当闭包无返回值时，它会自动返回一个 空视图。同 ZStack 等
+        Group{
+            let index = cards.firstIndex(matching: item)
+            if let index = index{
+                makeViewFunc(item)
+                    .position(layout.location(ofItemAt: index))
+                    .frame(width: layout.itemSize.width, height: layout.itemSize.height)
             }
         }
     }
@@ -41,7 +54,7 @@ struct GridView<Item, ItemView>: View where Item:Identifiable, ItemView: View {
     //-> some View: 'some' types are only implemented for the declared type of properties and subscripts and the return type of functions
     init(_ cards:[Item], content:@escaping (_ card: Item)-> ItemView) {
         self.cards = cards
-        self.content = content
+        self.makeViewFunc = content
     }
 }
 
