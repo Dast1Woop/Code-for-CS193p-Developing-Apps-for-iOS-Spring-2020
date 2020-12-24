@@ -25,6 +25,31 @@ class MemoryGameVM: ObservableObject{
     var cards: [MemoryGameM<String>.Card]{
         return model.cards
     }
+    
+    var onlyOneFaceUpCardIndex: Int?{
+        get{cards.firstIndex(matching: cards.filter({$0.isFaceUp}).only)}
+    
+        set{}
+    }
+    
+    var faceUpCardIndexesArr:[Int]?{
+        get{
+            var indexesArr = [Int]()
+            let arr = cards.filter({$0.isFaceUp})
+            if arr.count > 0 {
+                for i in 0..<arr.count {
+                    if let index = cards.firstIndex(matching: arr[i]){
+                        indexesArr.append(index)
+                    }
+                }
+            }
+            
+            if indexesArr.count > 0 {
+                return indexesArr
+            }
+            return nil
+        }
+    }
 
     //type method
     static func createMemoryGame()->MemoryGameM<String> {
@@ -44,34 +69,42 @@ class MemoryGameVM: ObservableObject{
     
     
     //mark:action
-    //操作model
+    //选中卡片时：
+    //交互方案（todo：翻转和匹配动画）：如果当前已有1张正面卡，匹配当前翻的卡片与正面卡是否一致，一致时修改isMatched属性为true；否则，除选中卡片，faceup都设置为false。再刷新全部卡片（匹配的隐藏，未匹配的根据模型显示正/反面）
     func chooseCard(card: MemoryGameM<String>.Card)  {
         card.choosed()
         
         //反转 cards 中对应 card 的 isFaceUp 属性
-        let index = cards.firstIndex(matching: card)
-        if let index = index{
-            model.cards[index].isFaceUp = !cards[index].isFaceUp
+        let sltedIndex = cards.firstIndex(matching: card)
+        if let sltedIndex = sltedIndex{
+            
+            if let desiredCardIndex = onlyOneFaceUpCardIndex, desiredCardIndex != sltedIndex{
+                if cards[sltedIndex].content == cards[desiredCardIndex].content {
+                    model.cards[sltedIndex].isMatched = true
+                    model.cards[desiredCardIndex].isMatched = true
+                }
+                onlyOneFaceUpCardIndex = nil
+                
+                model.cards[sltedIndex].isFaceUp = !cards[sltedIndex].isFaceUp
+            }else{
+                if let faceUpCardIndexesArr = faceUpCardIndexesArr{
+                    
+                    //当点击的不是已翻面卡片时，使所有卡片朝下，然后使被点击卡片朝上；否则，不做任何操作
+                    if !faceUpCardIndexesArr.contains(sltedIndex) {
+                        for i in 0..<cards.count {
+                            model.cards[i].isFaceUp = false
+                        }
+                        
+                        model.cards[sltedIndex].isFaceUp = !cards[sltedIndex].isFaceUp
+                    }else{
+                        //do nothing，被点击卡片也无需翻转
+                    }
+                }else{
+                    model.cards[sltedIndex].isFaceUp = !cards[sltedIndex].isFaceUp
+                }
+            }
         }
+        
     }
-    
-//    func indexOf(_ card: MemoryGameM<String>.Card)-> Int?{
-//
-//        //Tuple pattern cannot match values of non-tuple type 'MemoryGameM<String>.Card'
-////        for (index,cardM) in model.cards {
-////            if cardM.id == card.id {
-////                return index
-////            }
-////        }
-//
-//        for i in 0..<cards.count{
-//            let c = cards[i]
-//            if c.id == card.id{
-//                return i
-//            }
-//        }
-//
-//        return nil
-//    }
 }
 

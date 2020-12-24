@@ -71,17 +71,22 @@ struct Cardview: View {
     var body: some View {
         GeometryReader{ geometry in
             ZStack {
-                if(card.isFaceUp){
-                    
-    //                不能在 viewbuilder 中声明再使用变量，必须放在 viewbuilder 外面，最好是 body 闭包外面
-    //                var x = 1
-                    RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
-                    RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: lineWidth)
-                    
-                    //cmd+ctrl+space,调出emoji
-                    Text(card.content).font(cardContentFont(size: geometry.size))
+                if !card.isMatched{
+                    if(card.isFaceUp){
+                        
+                        //                不能在 viewbuilder 中声明再使用变量，必须放在 viewbuilder 外面，最好是 body 闭包外面
+                        //                var x = 1
+                        RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
+                        RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: lineWidth)
+                        
+                        //cmd+ctrl+space,调出emoji
+                        Text(card.content).font(cardContentFont(size: geometry.size))
+                    }else{
+                        RoundedRectangle(cornerRadius:cornerRadius).fill(Color.orange)
+                    }
                 }else{
-                    RoundedRectangle(cornerRadius:cornerRadius).fill(Color.orange)
+                    RoundedRectangle(cornerRadius:cornerRadius).fill(Color.white)
+                    Text("✔").font(cardContentFont(size: geometry.size))
                 }
             }
         }

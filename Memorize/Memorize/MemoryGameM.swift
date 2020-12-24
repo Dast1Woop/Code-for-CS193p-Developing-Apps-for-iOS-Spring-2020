@@ -38,8 +38,9 @@ struct MemoryGameM<CardContent> {
     }
     
     struct Card: Identifiable {
-        var isFaceUp = true
+        var isFaceUp = false
         var isChoosed = false
+        var isMatched = false
         var content:CardContent
         
         //id为Int类型，赋值时，要是唯一的。使得可以正常洗牌。
